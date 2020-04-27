@@ -11,12 +11,12 @@ import br.com.customerservice.model.Customer;
 import br.com.customerservice.service.SequenceGeneratorService;
 
 @Component
-public class ProductListener extends AbstractMongoEventListener<Customer> {
+public class CustomerListener extends AbstractMongoEventListener<Customer> {
 
 	private final SequenceGeneratorService sequenceGenerator;
 
 	@Autowired
-	public ProductListener(SequenceGeneratorService sequenceGenerator) {
+	public CustomerListener(SequenceGeneratorService sequenceGenerator) {
 		this.sequenceGenerator = sequenceGenerator;
 	}
 
