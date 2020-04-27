@@ -20,7 +20,7 @@ public class CustomerService {
 
 	public CustomerResponse create(final CustomerPayload payload) {
 		final var entity = CustomerMapper.toEntity(payload);
-		
+
 		validaIfHasCustomerWithTheSameEmail(payload.getEmail());
 
 		return CustomerResponse.builder().entity(repository.save(entity)).build();
@@ -33,9 +33,7 @@ public class CustomerService {
 	}
 
 	private void validaIfHasCustomerWithTheSameEmail(String email) {
-		final var customer = repository.findByEmail(email);
-
-		if (customer.isPresent())
+		if (repository.existsByEmail(email))
 			throw new EmailAlreadyExistsToCustomerException();
 	}
 
