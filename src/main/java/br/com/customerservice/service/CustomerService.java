@@ -1,5 +1,7 @@
 package br.com.customerservice.service;
 
+import javax.validation.Valid;
+
 import org.springframework.stereotype.Service;
 
 import br.com.customerservice.exception.CustomerNotExistsException;
@@ -18,7 +20,7 @@ public class CustomerService {
 		this.repository = repository;
 	}
 
-	public CustomerResponse create(final CustomerPayload payload) {
+	public CustomerResponse create(@Valid final CustomerPayload payload) {
 		final var entity = CustomerMapper.toEntity(payload);
 
 		validaIfHasCustomerWithTheSameEmail(payload.getEmail());
