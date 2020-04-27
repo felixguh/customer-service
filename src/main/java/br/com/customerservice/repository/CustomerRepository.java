@@ -12,5 +12,7 @@ import br.com.customerservice.model.Customer;
 public interface CustomerRepository extends MongoRepository<Customer, ObjectId> {
 	
 	Optional<Customer> findByCustomerNumber(final Long customerNumber);
+	
+	boolean existsByEmail(final String email);
 
 }
