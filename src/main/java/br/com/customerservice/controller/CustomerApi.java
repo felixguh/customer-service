@@ -19,6 +19,7 @@ public interface CustomerApi {
 	@ApiOperation("Create customer")
 	@ApiResponses({ @ApiResponse(code = 201, message = "Customer was created with success"),
 			@ApiResponse(code = 400, message = "Wrong information was sent", response = ErrorResponse.class),
+			@ApiResponse(code = 409, message = "Customer e-mail already is registered", response = ErrorResponse.class),
 			@ApiResponse(code = 500, message = "An unexpected error occurred", response = ErrorResponse.class) })
 	ResponseEntity<CustomerResponse> create(@Valid CustomerPayload payload);
 
