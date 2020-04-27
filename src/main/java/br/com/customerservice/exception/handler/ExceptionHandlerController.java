@@ -1,6 +1,7 @@
 package br.com.customerservice.exception.handler;
 
 import static org.springframework.http.HttpStatus.BAD_REQUEST;
+import static org.springframework.http.HttpStatus.CONFLICT;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -10,6 +11,7 @@ import java.util.stream.Collectors;
 import org.springframework.context.MessageSource;
 import org.springframework.context.MessageSourceResolvable;
 import org.springframework.context.i18n.LocaleContextHolder;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -21,6 +23,7 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 
 import br.com.customerservice.common.model.ErrorResponse;
 import br.com.customerservice.exception.CustomerNotExistsException;
+import br.com.customerservice.exception.EmailAlreadyExistsToCustomerException;
 
 @RestControllerAdvice
 public class ExceptionHandlerController {
@@ -35,6 +38,13 @@ public class ExceptionHandlerController {
 	public ResponseEntity<Object> handleCustomerNotExistsException() {
 		return ResponseEntity.noContent().build();
 	}
+	
+
+    @ExceptionHandler(EmailAlreadyExistsToCustomerException.class)
+    @ResponseStatus(code = CONFLICT)
+    public ErrorResponse handleEmailAlreadyExistsToCustomerException(EmailAlreadyExistsToCustomerException ex) {
+        return ErrorResponse.as(message("email.alreadyExists"));
+    }
 
 	@ExceptionHandler(MethodArgumentNotValidException.class)
 	@ResponseStatus(code = BAD_REQUEST)
