@@ -1,0 +1,16 @@
+version: '3.3'
+services:
+  mongodb-customer-service:
+    image: mongo:latest
+    container_name: mongodb-customer-service
+    ports:
+      - 27020:27017
+    volumes:
+      - ./volume/db:/data/db
+    environment:
+      - MONGO_INITDB_DATABASE=customers
+    networks:
+      - development-network
+networks:
+ development-network:
+   driver: bridge
