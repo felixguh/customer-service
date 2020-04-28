@@ -2,6 +2,7 @@ package br.com.customerservice.service;
 
 import javax.validation.Valid;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.customerservice.exception.CustomerNotExistsException;
@@ -16,6 +17,7 @@ public class CustomerService {
 
 	private final CustomerRepository repository;
 
+	@Autowired
 	public CustomerService(final CustomerRepository repository) {
 		this.repository = repository;
 	}
