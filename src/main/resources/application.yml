@@ -1,11 +1,12 @@
 server:
   servlet:
     context-path: /api/customer-service
+  port: 8081
 
 spring:
   data:
     mongodb:
       host: 127.0.0.1
-      port: 27017
+      port: 27020
       database: customers
       
